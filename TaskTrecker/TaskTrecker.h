@@ -1,6 +1,7 @@
 #ifndef TASKTRECKER_H_
 #define TASKTRECKER_H_
 
+#include <iostream>
 #include <map>
 #include <vector>
 #include <string>
@@ -21,10 +22,10 @@ class TaskTrecker {
 public:
 	const TaskInfo& GetPersonTaskInfo(const string& person)const;
 	void AddNewTask(const string& person);
-	tuple<TaskInfo, TaskInfo> PerforPersonTasks(
+	tuple<TaskInfo, TaskInfo> PerformPersonTasks(
 		const string& person, int task_count);
 private:
-	vector<string> data_tasks;
+	map<string, TaskInfo> data_tasks;
 };
 
 #endif // !TASKTRECKER_H_
