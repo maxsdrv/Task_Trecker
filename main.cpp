@@ -28,7 +28,7 @@ int main() {
     tie(updated_tasks, untouched_tasks) =
         tasks.PerformPersonTasks("Ivan", 2);
     cout << "Updated Ivan's tasks: ";
-    PrintTaskInfo(untouched_tasks);
+    PrintTaskInfo(updated_tasks);
 
     return 0;
 }
