@@ -1,4 +1,4 @@
-#include "TaskTrecker.h"
+#include "tasktrecker.h"
 
 const TaskInfo& TaskTrecker::GetPersonTaskInfo(const string& person) const
 {
@@ -18,11 +18,14 @@ void TaskTrecker::AddNewTask(const string& person){
 
 tuple<TaskInfo, TaskInfo> TaskTrecker::PerformPersonTasks(const string& person, int task_count)
 {
+
     TaskInfo update;
     TaskInfo untouched;
-    //for (const auto& [key, value] : data_tasks[person]) {
-    //    //Not completed
-    //}
-    
+    int count_task_status = 0;
+    for (const auto& [key, value] : data_tasks){
+      count_task_status = value.count(TaskStatus::NEW);
+
+    }
+
     return tuple<TaskInfo, TaskInfo>();
 }

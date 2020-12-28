@@ -10,22 +10,22 @@
 using namespace std;
 
 enum class TaskStatus {
-	NEW,
-	IN_PROGRESS,
-	TESTING,
-	DONE
+    NEW,
+    IN_PROGRESS,
+    TESTING,
+    DONE
 };
 
 using TaskInfo = map<TaskStatus, int>;
 
 class TaskTrecker {
 public:
-	const TaskInfo& GetPersonTaskInfo(const string& person)const;
-	void AddNewTask(const string& person);
-	tuple<TaskInfo, TaskInfo> PerformPersonTasks(
-		const string& person, int task_count);
+    const TaskInfo& GetPersonTaskInfo(const string& person)const;
+    void AddNewTask(const string& person);
+    tuple<TaskInfo, TaskInfo> PerformPersonTasks(
+        const string& person, int task_count);
 private:
-	map<string, TaskInfo> data_tasks;
+    map<string, TaskInfo> data_tasks;
 };
 
 #endif // !TASKTRECKER_H_
