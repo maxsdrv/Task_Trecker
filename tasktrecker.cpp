@@ -22,14 +22,30 @@ tuple<TaskInfo, TaskInfo> TaskTrecker::PerformPersonTasks(const string &person,
   TaskInfo update;
   TaskInfo untouched;
   int count_task_current = 0;
+  auto current_status = static_cast<TaskStatus>(count_task_current);
   for (const auto& [key, value] : data_tasks[person]){
+    if (value >= task_count){
+      untouched.insert({current_status, ++count_task_current});
+      current_status = static_cast<TaskStatus>(count_task_current);
+      update.insert({current_status, task_count});
+    }
+  }
+  /*for (const auto& [key, value] : data_tasks[person]){
     count_task_current = static_cast<int>(key);
     if (count_task_current > task_count){
       int value_for_untouched = count_task_current - task_count;
-      untouched.insert({TaskStatus::NEW, value_for_untouched});
-      update.insert({TaskStatus::IN_PROGRESS, task_count});
+      untouched.insert({current_status, value_for_untouched});
     }
-  }
+  }*/
 
   return tuple<TaskInfo, TaskInfo>(update, untouched);
 }
+
+void TaskTrecker::UpdateDataTasks(const string& person, const TaskInfo& task_info)
+{
+  for (const auto& [key, value] : task_info){
+    data_tasks[person].erase(key);
+    data_tasks[person].insert({key, value});
+  }
+}
+

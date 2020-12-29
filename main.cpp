@@ -29,6 +29,18 @@ int main() {
         tasks.PerformPersonTasks("Ivan", 2);
     cout << "Updated Ivan's tasks: ";
     PrintTaskInfo(updated_tasks);
+    cout << "Untouched Ivan's tasks: ";
+    PrintTaskInfo(untouched_tasks);
+    tie(updated_tasks, untouched_tasks) =
+        tasks.PerformPersonTasks("Ivan", 2);
+    cout << "Updated Ivan's tasks: ";
+    PrintTaskInfo(updated_tasks);
+    cout << "Untouched Ivan's tasks: ";
+    PrintTaskInfo(untouched_tasks);
+    tie(updated_tasks, untouched_tasks) =
+        tasks.PerformPersonTasks("Ivan", 2);
+    cout << "Updated Ivan's tasks: ";
+    PrintTaskInfo(updated_tasks);
 
     return 0;
 }
