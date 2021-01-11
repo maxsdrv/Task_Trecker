@@ -46,9 +46,6 @@ tuple<TaskInfo, TaskInfo> TaskTrecker::PerformPersonTasks(const string& person,
 			untouched.insert({key, value});
 		}
 	}
-	for (auto [key, value] : update){
-		data_tasks[person].at(key) = value;
-	}
 
 	return tuple<TaskInfo, TaskInfo>(update, untouched);
 }
