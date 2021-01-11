@@ -26,7 +26,6 @@ tuple<TaskInfo, TaskInfo> TaskTrecker::PerformPersonTasks(const string& person,
 	for (auto status = static_cast<int>(TaskStatus::NEW); status < static_cast<int>(TaskStatus::DONE); ++status) {
 		TaskStatus start = static_cast<TaskStatus>(status);
 		TaskStatus next = static_cast<TaskStatus>(++status);
-		int count_start = 0;
 
 		if (!data_tasks.count(person)) continue;
 		if (!update.count(start)) {
@@ -42,20 +41,17 @@ tuple<TaskInfo, TaskInfo> TaskTrecker::PerformPersonTasks(const string& person,
 			--task_count;
 		}
 	}
+	for (auto [key, value] : data_tasks[person]){
+		if (key != TaskStatus::DONE){
+			untouched.insert({key, value});
+		}
+	}
+	for (auto [key, value] : update){
+		data_tasks[person].at(key) = value;
+	}
 
 	return tuple<TaskInfo, TaskInfo>(update, untouched);
 }
 
-void TaskTrecker::UpdateDataTasks(const string& person, const TaskInfo& update, const TaskInfo& untouched)
-{
-	for (const auto& [key_update, value_update] : update) {
-		for (const auto& [key_untouched, value_untouched] : untouched) {
-			data_tasks[person].erase(key_untouched);
-			data_tasks[person].insert({ key_untouched, value_untouched });
-		}
-		data_tasks[person].erase(key_update);
-		data_tasks[person].insert({ key_update, value_update });
-	}
-}
 
 

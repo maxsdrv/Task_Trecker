@@ -24,7 +24,6 @@ public:
     void AddNewTask(const string& person);
     tuple<TaskInfo, TaskInfo> PerformPersonTasks(
         const string& person, int task_count);
-    void UpdateDataTasks(const string& person, const TaskInfo& task_info);
 private:
     map<string, TaskInfo> data_tasks;
 };
